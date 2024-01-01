@@ -1,0 +1,29 @@
+{% extends 'base/main.html' %}
+{% block content %}
+
+<div class="header-bar">
+    <h1>로그인</h1>
+</div>
+
+<div class="card-body">
+    <form method="POST">
+        {% csrf_token %}
+        
+        {{ form.username.label_tag }} {{ form.username }}
+        {{ form.password.label_tag }} {{ form.password }}
+        
+        <input class="button" type="submit" value="로그인" style="margin-bottom: 40px;">
+    </form>
+
+    {% if form_errors %}
+        <ul class="messages">
+            {% for error in form_errors %}
+                <p class="error">{{ error }}</p>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    <p style="margin-top: 40px;"><a href="{% url 'register' %}">회원가입 하러가기</a></p>
+</div>
+
+{% endblock content %}

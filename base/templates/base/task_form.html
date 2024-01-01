@@ -1,0 +1,24 @@
+{% extends 'base/main.html' %}
+{% block content %}
+
+<div class="header-bar">
+    <a href="{% url 'tasks' %}">&#8592; 뒤로가기</a>
+</div>
+
+<div class="card-body">
+    <form method="POST" action="" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div>
+            {{form.as_p}}
+            
+            {% if task.file_upload %}
+            <p>첨부 파일: {{ task.file_upload.name }}</p>
+            <a href="{% url 'download' pk=task.id %}">다운로드</a>
+            {% endif %}
+        </div>
+        <input class="button" type="submit" value="등록">
+    </form>
+</div>
+
+
+{% endblock content %}
